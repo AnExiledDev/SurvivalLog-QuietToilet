@@ -15,7 +15,7 @@ If a toilet sound still gets through, find its path in `BepInEx/quiet-toilet.log
 
 ## Install
 
-Copy `QuietToilet.dll` into `BepInEx/plugins`. Needs BepInEx 6 (IL2CPP build).
+Download `QuietToilet.dll` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-QuietToilet/releases/latest) and copy it into `BepInEx/plugins`. Needs BepInEx 6 (IL2CPP build).
 
 ## Build and test
 
@@ -25,3 +25,7 @@ dotnet test tests/QuietToilet.Tests
 ```
 
 The build references BepInEx and the game's interop assemblies under `GameDir`, so BepInEx must be installed and the game launched once. The tests compile only the pure `Core` code and need nothing from the game.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
