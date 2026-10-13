@@ -16,8 +16,8 @@ public sealed class Plugin : BasePlugin
     public override void Load()
     {
         var actionKeywords = Config.Bind("Mute", "ActionKeywords", "toilet,厕所,马桶,如厕,排便,大便,小便",
-            "Any action whose name contains one of these words counts as using the toilet. Its sound effects and character voice lines are muted. Separate words with commas.\n" +
-            "名称中含有以下任一词语的动作都算作上厕所，这些动作的音效和角色语音都会被静音。多个词语用英文逗号分隔。").Value;
+            "Any action whose name contains one of these words counts as using the toilet. Its sound effects and character voice lines are muted, unless another action uses the same sound. Separate words with commas.\n" +
+            "名称中含有以下任一词语的动作都算作上厕所，这些动作的音效和角色语音都会被静音，除非其他动作也使用同一个声音。多个词语用英文逗号分隔。").Value;
         var pathKeywords = Config.Bind("Mute", "PathKeywords", "toilet,poop,fart,matong,cesuo,lashi,dabian,xiaobian",
             "Any sound whose event path contains one of these words is muted, wherever it plays. Separate words with commas.\n" +
             "事件路径中含有以下任一词语的声音，无论在哪里播放都会被静音。多个词语用英文逗号分隔。").Value;
