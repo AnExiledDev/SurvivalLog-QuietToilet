@@ -16,7 +16,7 @@ Quiet Toilet only changes what you hear. It adds nothing to your save and does n
 Works in English and Chinese.
 
 [size=5]Known issues[/size]
-A toilet sound that the game also uses for another action stays on by default. The mod writes every sound it hears to [font=Courier New]BepInEx&#92;quiet-toilet.log[/font], so you can find it and add it in the config. If you run into anything strange, please tell me (see Feedback below).
+A toilet sound that the game also uses for another action stays on by default. Turn on [font=Courier New]LogSoundsHeard[/font] in the config and the mod writes every sound it hears to [font=Courier New]BepInEx&#92;quiet-toilet.log[/font], so you can find that sound and add it in the config. If you run into anything strange, please tell me (see Feedback below).
 
 [size=5]Requirements[/size]
 [list]

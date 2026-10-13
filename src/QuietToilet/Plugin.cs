@@ -11,18 +11,22 @@ namespace QuietToilet;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quiettoilet";
-    private const string Version = "0.1.2";
+    private const string Version = "0.2.0";
 
     public override void Load()
     {
         var actionKeywords = Config.Bind("Mute", "ActionKeywords", "toilet,厕所,马桶,如厕,排便,大便,小便",
-            "An action whose name contains any of these is a toilet action; its sound and its character voices are muted.").Value;
+            "Any action whose name contains one of these words counts as using the toilet. Its sound effects and character voice lines are muted. Separate words with commas.\n" +
+            "名称中含有以下任一词语的动作都算作上厕所，这些动作的音效和角色语音都会被静音。多个词语用英文逗号分隔。").Value;
         var pathKeywords = Config.Bind("Mute", "PathKeywords", "toilet,poop,fart,matong,cesuo,lashi,dabian,xiaobian",
-            "Any sound whose FMOD event path contains one of these is muted, wherever it plays.").Value;
+            "Any sound whose event path contains one of these words is muted, wherever it plays. Separate words with commas.\n" +
+            "事件路径中含有以下任一词语的声音，无论在哪里播放都会被静音。多个词语用英文逗号分隔。").Value;
         var extraPaths = Config.Bind("Mute", "ExtraEventPaths", "",
-            "Exact FMOD event paths to mute as well, comma separated (copy them from BepInEx/quiet-toilet.log).").Value;
-        var isLoggingHeard = Config.Bind("Diagnostics", "LogSoundsHeard", true,
-            "Log each distinct sound the first time it plays, to BepInEx/quiet-toilet.log, so a missed toilet sound can be found.").Value;
+            "Exact sound event paths to mute as well, separated by commas. To find a path, set LogSoundsHeard to true, play the sound in game, then copy its path (it starts with event:/) from BepInEx/quiet-toilet.log.\n" +
+            "额外要静音的完整声音事件路径，用英文逗号分隔。查找方法：把 LogSoundsHeard 设为 true，在游戏中让这个声音播放一次，然后从 BepInEx/quiet-toilet.log 中复制它的路径（以 event:/ 开头）。").Value;
+        var isLoggingHeard = Config.Bind("Diagnostics", "LogSoundsHeard", false,
+            "When true, each sound is written to BepInEx/quiet-toilet.log the first time it plays, marked as muted or heard. Turn it on to find a toilet sound that still plays.\n" +
+            "设为 true 时，每个声音第一次播放时都会写入 BepInEx/quiet-toilet.log，并注明已静音或未静音。想找出仍在播放的厕所声音时再打开。").Value;
 
         var log = new QuietLog(Log, Path.Combine(Paths.BepInExRootPath, "quiet-toilet.log"));
         var extras = MuteRules.ParseList(extraPaths);

@@ -14,14 +14,14 @@ All three are comma-separated lists. Matching ignores upper and lower case. Spac
 
 `ActionKeywords` is matched against every name the game gives an action, in English and Chinese. Remove a word to stop treating those actions as toilet actions.
 
-`PathKeywords` is plain text matching, so a short keyword can catch more than you meant. If something other than the toilet goes quiet, remove the keyword that caught it (the sound log shows the path).
+`PathKeywords` is plain text matching, so a short keyword can catch more than you meant. If something other than the toilet goes quiet, remove the keyword that caught it (turn on `LogSoundsHeard` and the log shows the path).
 
-`ExtraEventPaths` takes full paths such as `event:/SFX/Something/Toilet_Flush`, copied from `BepInEx\quiet-toilet.log`. A path listed here is muted even if other actions share it.
+`ExtraEventPaths` takes full paths such as `event:/SFX/Something/Toilet_Flush`. To find one, set `LogSoundsHeard` to `true`, play the sound in game, then copy its path from `BepInEx\quiet-toilet.log`. A path listed here is muted even if other actions share it.
 
 ## Diagnostics
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| `LogSoundsHeard` | `true` | Writes each distinct sound the first time it plays to `BepInEx\quiet-toilet.log`, so a missed toilet sound can be found. |
+| `LogSoundsHeard` | `false` | When `true`, writes each sound to `BepInEx\quiet-toilet.log` the first time it plays, marked as muted or heard. Use it to find a toilet sound that still plays. |
 
-Turn it off once everything you want is muted. The log trims itself to its newest part once it passes 1 MB.
+Turn it off again once everything you want is muted. The log trims itself to its newest part once it passes 1 MB.

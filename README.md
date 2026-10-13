@@ -11,7 +11,7 @@ Using the toilet in Survival Log plays a sound effect and the character's voice 
 - **Nothing else goes quiet**: the mod reads the game's own action and voice tables when a game loads. If a toilet sound is also used by some other action, it is left alone, so muting the toilet never silences anything else.
 - **Keyword backup**: any sound whose event path contains a toilet keyword (such as `toilet` or `poop`) is muted wherever it plays, in case the game adds a new toilet sound in an update.
 - **Add your own**: if a toilet sound still gets through, you can name it in the config and it is muted from then on.
-- **Sound log**: by default the mod writes each distinct sound the first time it plays to `BepInEx\quiet-toilet.log`, so a missed sound is easy to find.
+- **Sound log**: turn on `LogSoundsHeard` and the mod writes each sound the first time it plays to `BepInEx\quiet-toilet.log`, so a missed sound is easy to find. It is off by default.
 
 Quiet Toilet only changes what you hear. It adds nothing to your save and does not edit game files. You can remove it at any time.
 
@@ -54,9 +54,9 @@ Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created t
 
 Tested on Survival Log 1.1.18317 with BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.1.2 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines, plus every sound heard, are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB.
+Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.2.0 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
 
-To mute a sound that still plays: use the toilet in game, open `BepInEx\quiet-toilet.log`, find the event path logged at that moment (it looks like `event:/...`), and add it to `ExtraEventPaths`.
+To mute a sound that still plays: set `LogSoundsHeard` to `true`, use the toilet in game, open `BepInEx\quiet-toilet.log`, find the event path logged at that moment (it looks like `event:/...`), and add it to `ExtraEventPaths`.
 
 ## Feedback and bug reports
 
