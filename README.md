@@ -15,7 +15,7 @@ Using the toilet in Survival Log plays a sound effect and the character's voice 
 
 Quiet Toilet only changes what you hear. It adds nothing to your save and does not edit game files. You can remove it at any time.
 
-Toilet actions are found by name in English and Chinese, so it works in either language.
+Toilet actions are found by name in English and Chinese, so it works in either language. Every config setting is explained in English and Simplified Chinese.
 
 ## How it works
 
@@ -33,7 +33,7 @@ If the game's tables never finish loading (about two minutes of waiting), the mo
 
 ## Requirements
 
-- Survival Log 1.1.18317. Built and tested on this version; a game update can break it until the mod is updated.
+- Survival Log 1.1.18902. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game.
 
 ## Install
@@ -52,7 +52,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created t
 
 ## Troubleshooting
 
-Tested on Survival Log 1.1.18317 with BepInEx `6.0.0-be.788`.
+Built against BepInEx `6.0.0-be.788`.
 
 Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.2.0 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
 
