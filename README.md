@@ -29,7 +29,6 @@ If the game's tables never finish loading (about two minutes of waiting), the mo
 
 - A toilet sound that the game shares with another action stays audible by default. Check `BepInEx\quiet-toilet.log` for lines ending in "left alone because these actions use it too" if you still hear something.
 - The path keywords are matched as plain text. A keyword like `poop` mutes any sound with `poop` anywhere in its path, toilet or not.
-- If a sound slips through or something that is not a toilet goes quiet, please tell me (see [Feedback](#feedback-and-bug-reports)).
 
 ## Requirements
 
