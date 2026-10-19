@@ -16,6 +16,7 @@ public sealed class QuietTicker : MonoBehaviour
     internal static IReadOnlyList<string> ActionKeywords = Array.Empty<string>();
     internal static IReadOnlyList<string> ExtraPaths = Array.Empty<string>();
     internal static Action<string> Log = _ => { };
+    private static QuietTicker? _current;
     private float _nextPoll;
     private int _polls;
     private int _failures;
@@ -23,6 +24,20 @@ public sealed class QuietTicker : MonoBehaviour
 
     public QuietTicker(IntPtr pointer) : base(pointer)
     {
+        _current = this;
+    }
+
+    /// <summary>
+    /// The toilet words or extra paths changed: read the tables again. The last count read is kept, so tables that
+    /// already settled are adopted at the next poll.
+    /// </summary>
+    internal static void Rescan()
+    {
+        if (_current is not { } ticker) return;
+
+        ticker._polls = 0;
+        ticker._nextPoll = 0;
+        ticker.enabled = true;
     }
 
     private void Update()

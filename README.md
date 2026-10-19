@@ -34,12 +34,14 @@ If the game's tables never finish loading (about two minutes of waiting), the mo
 
 - Survival Log 1.1.18902. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game.
+- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.4.0 or newer, which applies changed settings at once. Quiet Toilet does not load without it.
 
 ## Install
 
 1. Install the [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12) (if no other mods were installed before, start the game once so BepInEx finishes setup, then quit).
-2. Download `QuietToilet-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-QuietToilet/releases/latest) or from [Nexus Mods](https://www.nexusmods.com/survivallog/mods/31).
-3. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
+2. Install Exiled's Toolkit: download `ExiledToolkit-x.y.z.zip` from [its latest release](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit/releases/latest) or from Nexus Mods, and extract it into the game folder (the folder with `SurvivalLog.exe`).
+3. Download `QuietToilet-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-QuietToilet/releases/latest) or from [Nexus Mods](https://www.nexusmods.com/survivallog/mods/31).
+4. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
    `C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\QuietToilet.dll`
 
 ## Uninstall
@@ -48,13 +50,13 @@ Delete `QuietToilet.dll` from the `BepInEx\plugins` folder. For a clean slate, a
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created the first time the game starts with the mod. Edit it while the game is closed; changes apply at the next game start. See [CONFIG.md](CONFIG.md) for every setting.
+Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting.
 
 ## Troubleshooting
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.2.0 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
+Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.3.0 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
 
 To mute a sound that still plays: set `LogSoundsHeard` to `true`, use the toilet in game, open `BepInEx\quiet-toilet.log`, find the event path logged at that moment (it looks like `event:/...`), and add it to `ExtraEventPaths`.
 

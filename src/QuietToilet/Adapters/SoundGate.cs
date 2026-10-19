@@ -25,10 +25,8 @@ internal static class SoundGate
     private static Action<string> _log = _ => { };
     private static Action<string> _logFileOnly = _ => { };
 
-    public static void Apply(Harmony harmony, IReadOnlyList<string> pathKeywords, bool isLoggingHeard, Action<string> log, Action<string> logFileOnly)
+    public static void Apply(Harmony harmony, Action<string> log, Action<string> logFileOnly)
     {
-        _pathKeywords = pathKeywords;
-        _isLoggingHeard = isLoggingHeard;
         _log = log;
         _logFileOnly = logFileOnly;
 
@@ -40,6 +38,15 @@ internal static class SoundGate
         Patch(harmony, typeof(FmodManager), "GetOrCreateInstance", null, postfix: nameof(SilenceIfMuted));
         Patch(harmony, typeof(RuntimeManager), "PlayOneShot", new[] { typeof(string), typeof(Vector3) }, prefix: nameof(SkipIfMuted));
         Patch(harmony, typeof(RuntimeManager), "PlayOneShotAttached", new[] { typeof(string), typeof(GameObject) }, prefix: nameof(SkipIfMuted));
+    }
+
+    /// <summary>The player's path keywords and log switch, at start and after every change; sounds are judged again.</summary>
+    public static void Configure(IReadOnlyList<string> pathKeywords, bool isLoggingHeard)
+    {
+        _pathKeywords = pathKeywords;
+        _isLoggingHeard = isLoggingHeard;
+        Verdicts.Clear();
+        Reported.Clear();
     }
 
     /// <summary>Cached verdicts are dropped, or a toilet sound judged audible before the tables loaded would stay audible.</summary>
