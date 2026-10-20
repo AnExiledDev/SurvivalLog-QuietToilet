@@ -16,7 +16,7 @@ Quiet Toilet only changes what you hear. It adds nothing to your save and does n
 Works in English and Chinese.
 
 [size=5]Known issues[/size]
-A toilet sound that the game also uses for another action stays on by default. Turn on [font=Courier New]LogSoundsHeard[/font] in the config and the mod writes every sound it hears to [font=Courier New]BepInEx\quiet-toilet.log[/font], so you can find that sound and add it in the config.
+The main toilet sound is muted by default. Any other toilet sound that the game also uses for another action stays on by default. Turn on [font=Courier New]LogSoundsHeard[/font] in the config and the mod writes every sound it hears to [font=Courier New]BepInEx\quiet-toilet.log[/font], so you can find that sound and add it in the config.
 
 [size=5]Requirements[/size]
 [list]
@@ -65,7 +65,7 @@ Quiet Toilet 只改变你听到的声音，不会往存档里添加任何内容�
 支持英文和中文。
 
 [size=5]已知问题[/size]
-游戏同时用于其他动作的厕所音效默认不会被静音。在配置中打开 [font=Courier New]LogSoundsHeard[/font] 后，模组会把听到的每个声音写入 [font=Courier New]BepInEx\quiet-toilet.log[/font]，你可以从中找到这个声音并把它加到配置里。
+上厕所的主要音效默认会被静音。游戏同时用于其他动作的其他厕所音效默认不会被静音。在配置中打开 [font=Courier New]LogSoundsHeard[/font] 后，模组会把听到的每个声音写入 [font=Courier New]BepInEx\quiet-toilet.log[/font]，你可以从中找到这个声音并把它加到配置里。
 
 [size=5]前置要求[/size]
 [list]

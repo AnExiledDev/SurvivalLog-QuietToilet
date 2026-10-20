@@ -8,7 +8,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created t
 | --- | --- | --- |
 | `ActionKeywords` | `toilet,厕所,马桶,如厕,排便,大便,小便` | An action whose name contains any of these counts as a toilet action. Its sound and its character voice lines are muted, unless another action uses the same sound. |
 | `PathKeywords` | `toilet,poop,fart,matong,cesuo,lashi,dabian,xiaobian` | Any sound whose event path contains one of these is muted, wherever it plays. |
-| `ExtraEventPaths` | (empty) | Exact sound event paths to mute as well. |
+| `ExtraEventPaths` | `event:/Model/Human/zuoxiajiukaishi` | Exact sound event paths to mute as well. The default is the sound of using the toilet, which the game also plays for two other toilet actions. |
 
 All three are comma-separated lists. Matching ignores upper and lower case. Spaces around commas are ignored.
 

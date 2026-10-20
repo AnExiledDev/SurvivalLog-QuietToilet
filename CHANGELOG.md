@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Fixed: the sound of using the toilet (`event:/Model/Human/zuoxiajiukaishi`) was not muted. The game plays it for two more toilet actions, "sat down and it starts" and "can't hold it in", so the mod treated it as shared and left it alone. It is now in `ExtraEventPaths` by default.
+- An existing config file gets the path added to its `ExtraEventPaths` once, at the first start with this version. Paths you already listed stay. If you remove it afterwards, it stays removed.
+
 ## 0.3.0
 
 - Works with the Mod Manager's Mods screen: it shows the mod's name, description, category and links, and links this changelog.
