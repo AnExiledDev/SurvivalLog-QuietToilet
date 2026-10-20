@@ -38,6 +38,7 @@
     <AssemblyMetadata Include="ModManager.Settings" Value="Restart" />
     <AssemblyMetadata Include="ModManager.NexusId" Value="31" />
     <AssemblyMetadata Include="ModManager.GitHub" Value="AnExiledDev/SurvivalLog-QuietToilet" />
+    <AssemblyMetadata Include="ModManager.Changelog" Value="https://github.com/AnExiledDev/SurvivalLog-QuietToilet/blob/main/CHANGELOG.md" />
   </ItemGroup>
 
 </Project>
