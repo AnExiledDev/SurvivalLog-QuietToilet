@@ -1,5 +1,5 @@
 Name: Quiet Toilet
-Summary: Mutes the toilet sound effects and the voice lines that come with them, so you stop hearing it every time someone goes. Every other sound plays as normal, even ones the game shares with the toilet. Nothing goes into your save, so you can remove it any time. If a toilet sound still gets through, the mod can list what it hears so you can mute that one too.
+Summary: Mutes the toilet sound effects and the voice lines that come with them, so you stop hearing it every time someone goes. Every other sound plays as normal, even ones the game shares with the toilet. Nothing goes into your save, so remove it any time. If a toilet sound still gets through, the mod can list what it hears so you can mute that one too.
 
 Description (BBCode):
 Tired of hearing it every time someone uses the toilet? Quiet Toilet mutes the toilet sounds and the voice lines that go with them. Nothing else gets quieter.
