@@ -56,7 +56,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created t
 
 Built against BepInEx `6.0.0-be.788`.
 
-Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.3.1 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
+Check `BepInEx\LogOutput.log` for `===== Quiet Toilet 0.3.2 started`. Once a game has loaded, a line starting with `read ... actions and ... voices` shows how many toilet actions were found and which sounds are muted. The same lines are in `BepInEx\quiet-toilet.log`, which survives restarts and trims itself past 1 MB. With `LogSoundsHeard` on, it also lists every sound the first time it plays.
 
 To mute a sound that still plays: set `LogSoundsHeard` to `true`, use the toilet in game, open `BepInEx\quiet-toilet.log`, find the event path logged at that moment (it looks like `event:/...`), and add it to `ExtraEventPaths`.
 

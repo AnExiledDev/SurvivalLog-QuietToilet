@@ -34,7 +34,7 @@
     <AssemblyMetadata Include="ModManager.Description" Value="Mutes the toilet sound effects and voice lines. Every other sound plays as normal.&#10;静音上厕所的音效和角色语音，其他声音照常播放。" />
     <AssemblyMetadata Include="ModManager.Author" Value="AnExiledDev" />
     <AssemblyMetadata Include="ModManager.Category" Value="Audio" />
-    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.18902" />
+    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.19131" />
     <AssemblyMetadata Include="ModManager.Settings" Value="Restart" />
     <AssemblyMetadata Include="ModManager.NexusId" Value="31" />
     <AssemblyMetadata Include="ModManager.GitHub" Value="AnExiledDev/SurvivalLog-QuietToilet" />

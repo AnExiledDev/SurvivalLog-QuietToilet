@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2
+
+- After a game update, a hook that can no longer be placed is logged as an error, so the Mod Manager can mark the mod as maybe needing an update.
+- Made for Survival Log 1.1.19131.
+
 ## 0.3.1
 
 - Fixed: the sound of using the toilet (`event:/Model/Human/zuoxiajiukaishi`) was not muted. The game plays it for two more toilet actions, "sat down and it starts" and "can't hold it in", so the mod treated it as shared and left it alone. It is now in `ExtraEventPaths` by default.
