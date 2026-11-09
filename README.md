@@ -8,7 +8,7 @@ Using the toilet in Survival Log plays a sound effect and the character's voice 
 
 - **Toilet sounds muted**: the sound effect of every toilet action is silenced.
 - **Toilet voice lines muted**: the character voices played during a toilet action are silenced too, for every character.
-- **Nothing else goes quiet**: the mod reads the game's own action and voice tables when a game loads. If a toilet sound is also used by some other action, it is left alone, so muting the toilet never silences anything else.
+- **Nothing else goes quiet**: the mod reads the game's action and voice tables when a game loads. If a toilet sound is also used by some other action, it is left alone, so muting the toilet never silences anything else.
 - **Keyword backup**: any sound whose event path contains a toilet keyword (such as `toilet` or `poop`) is muted wherever it plays, in case the game adds a new toilet sound in an update.
 - **Add your own**: if a toilet sound still gets through, you can name it in the config and it is muted from then on.
 - **Sound log**: turn on `LogSoundsHeard` and the mod writes each sound the first time it plays to `BepInEx\quiet-toilet.log`, so a missed sound is easy to find. It is off by default.
