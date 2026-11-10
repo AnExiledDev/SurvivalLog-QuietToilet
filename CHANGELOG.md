@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+- Now uses Exiled's Toolkit for its shared parts, so it needs Exiled's Toolkit 0.19.0 or newer. Settings you change on the Mods screen always take effect right away.
+- Past 1 MB, `BepInEx\quiet-toilet.log` is now moved to `quiet-toilet.log.1` and started again.
+- Made for Survival Log 1.1.20719.
+
 ## 0.3.2
 
 - After a game update, Mod Manager can tell you if this mod may need an update.

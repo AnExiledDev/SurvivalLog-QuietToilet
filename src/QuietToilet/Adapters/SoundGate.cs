@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using ExiledToolkit.Game;
 using FMODUnity;
 using GameCore.HotUpdate;
-using HarmonyLib;
 using QuietToilet.Core;
 using UnityEngine;
 
@@ -16,28 +16,34 @@ namespace QuietToilet.Adapters;
 /// </summary>
 internal static class SoundGate
 {
+    // What each hook was doing when it failed; each is logged once, so a failure on every sound cannot flood the log.
+    private const string SilencingCachedSound = "muting a sound from the instance cache";
+    private const string CheckingSound = "checking a sound";
+
     // Main thread only: FMOD play calls and plan changes all arrive on Unity's main thread, so neither map is locked.
     private static readonly Dictionary<string, bool> Verdicts = new(StringComparer.Ordinal);
     private static readonly Dictionary<string, bool> Reported = new(StringComparer.Ordinal);
     private static MutePlan _plan = MuteRules.Plan(ToiletSounds.None, Array.Empty<string>());
     private static IReadOnlyList<string> _pathKeywords = Array.Empty<string>();
     private static bool _isLoggingHeard;
+    private static PatchKit? _hooks;
     private static Action<string> _log = _ => { };
     private static Action<string> _logFileOnly = _ => { };
 
-    public static void Apply(Harmony harmony, Action<string> log, Action<string> logFileOnly)
+    public static void Apply(PatchKit hooks, Action<string> log, Action<string> logFileOnly)
     {
+        _hooks = hooks;
         _log = log;
         _logFileOnly = logFileOnly;
 
         foreach (var name in new[] { "Play2dAction", "PlayBattle3dAction", "PlayBattle3dActionFollow", "PlayEnv3dAction" })
         {
-            Patch(harmony, typeof(FmodManager), name, null, prefix: nameof(SkipIfMuted));
+            Patch(hooks, typeof(FmodManager), name, null, prefix: nameof(SkipIfMuted));
         }
 
-        Patch(harmony, typeof(FmodManager), "GetOrCreateInstance", null, postfix: nameof(SilenceIfMuted));
-        Patch(harmony, typeof(RuntimeManager), "PlayOneShot", new[] { typeof(string), typeof(Vector3) }, prefix: nameof(SkipIfMuted));
-        Patch(harmony, typeof(RuntimeManager), "PlayOneShotAttached", new[] { typeof(string), typeof(GameObject) }, prefix: nameof(SkipIfMuted));
+        Patch(hooks, typeof(FmodManager), "GetOrCreateInstance", null, postfix: nameof(SilenceIfMuted));
+        Patch(hooks, typeof(RuntimeManager), "PlayOneShot", new[] { typeof(string), typeof(Vector3) }, prefix: nameof(SkipIfMuted));
+        Patch(hooks, typeof(RuntimeManager), "PlayOneShotAttached", new[] { typeof(string), typeof(GameObject) }, prefix: nameof(SkipIfMuted));
     }
 
     /// <summary>The player's path keywords and log switch, at start and after every change; sounds are judged again.</summary>
@@ -56,22 +62,10 @@ internal static class SoundGate
         Verdicts.Clear();
     }
 
-    private static void Patch(Harmony harmony, Type owner, string target, Type[]? parameters, string? prefix = null, string? postfix = null)
+    private static void Patch(PatchKit hooks, Type owner, string target, Type[]? parameters, string? prefix = null, string? postfix = null)
     {
-        try
-        {
-            var original = AccessTools.Method(owner, target, parameters) ?? throw new MissingMethodException(owner.Name, target);
-
-            harmony.Patch(original, prefix: Hook(prefix), postfix: Hook(postfix));
-            _log($"hooked {owner.Name}.{target}");
-        }
-        catch (Exception ex)
-        {
-            _log($"could not hook {owner.Name}.{target}: {ex.Message}");
-        }
+        hooks.Patch(typeof(SoundGate), owner, target, parameters, prefix: prefix, postfix: postfix, done: $"hooked {owner.Name}.{target}");
     }
-
-    private static HarmonyMethod? Hook(string? name) => name is null ? null : new HarmonyMethod(typeof(SoundGate), name);
 
     /// <summary>Prefix for methods whose first argument is the event path. False skips the sound.</summary>
     private static bool SkipIfMuted(string __0, MethodBase __originalMethod) => !Judge(__0, __originalMethod.Name);
@@ -86,7 +80,7 @@ internal static class SoundGate
         }
         catch (Exception ex)
         {
-            _log("GetOrCreateInstance hook failed: " + ex.Message);
+            _hooks?.Fail(SilencingCachedSound, ex);
         }
     }
 
@@ -106,7 +100,7 @@ internal static class SoundGate
         }
         catch (Exception ex)
         {
-            _log("sound check failed: " + ex.Message);
+            _hooks?.Fail(CheckingSound, ex);
 
             return false;
         }

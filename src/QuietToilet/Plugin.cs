@@ -5,6 +5,9 @@ using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
+using ExiledToolkit;
+using ExiledToolkit.Game;
+using ExiledToolkit.Kit;
 using HarmonyLib;
 using QuietToilet.Adapters;
 using QuietToilet.Core;
@@ -12,16 +15,17 @@ using QuietToilet.Core;
 namespace QuietToilet;
 
 [BepInPlugin(Guid, "Quiet Toilet", Version)]
-[BepInDependency(OptionalLive.ToolkitGuid, BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency(ExiledToolkit.Plugin.Guid, ">=0.19.0")]
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.quiettoilet";
-    private const string Version = "0.3.2";
+    private const string Version = "0.3.3";
+
+    /// <summary>Every launch logs every sound again, so past 1 MB the file is moved aside and started again.</summary>
+    private const long MaxLogBytes = 1024 * 1024;
 
     public override void Load()
     {
-        if (!OptionalLive.IsToolkitInstalled) Log.LogInfo(OptionalLive.MissingNote);
-
         // Read before the first Bind: every Bind saves the file and rewrites this line with the current version.
         var configPath = Path.Combine(Paths.ConfigPath, Guid + ".cfg");
         var doesConfigExist = File.Exists(configPath);
@@ -40,17 +44,16 @@ public sealed class Plugin : BasePlugin
             new ConfigDescription("When true, each sound is written to BepInEx/quiet-toilet.log the first time it plays, marked as muted or heard. Turn it on to find a toilet sound that still plays.\n" +
             "设为 true 时，每个声音第一次播放时都会写入 BepInEx/quiet-toilet.log，并注明已静音或未静音。想找出仍在播放的厕所声音时再打开。", null, "ModManager.Advanced"));
 
-        var log = new QuietLog(Log, Path.Combine(Paths.BepInExRootPath, "quiet-toilet.log"));
+        var log = new ModLog(Log, "quiet-toilet.log") { MaxFileBytes = MaxLogBytes };
 
-        log.TrimIfLarge();
         log.Write($"===== Quiet Toilet {Version} started");
 
         if (ConfigUpgrade.NeedsToiletUseSound(doesConfigExist, configWrittenBy)) AddToiletUseSound(extraPaths, log);
 
         QuietTicker.Log = log.Write;
-        SoundGate.Apply(new Harmony(Guid), log.Write, log.WriteFileOnly);
-        OptionalLive.Watch(() => SoundGate.Configure(MuteRules.ParseList(pathKeywords.Value), isLoggingHeard.Value), pathKeywords, isLoggingHeard);
-        OptionalLive.Watch(() => UseToiletWords(MuteRules.ParseList(actionKeywords.Value), MuteRules.ParseList(extraPaths.Value)), actionKeywords, extraPaths);
+        SoundGate.Apply(new PatchKit(new Harmony(Guid), log.Write), log.Write, log.WriteFileOnly);
+        LiveSettings.Watch(() => SoundGate.Configure(MuteRules.ParseList(pathKeywords.Value), isLoggingHeard.Value), pathKeywords, isLoggingHeard);
+        LiveSettings.Watch(() => UseToiletWords(MuteRules.ParseList(actionKeywords.Value), MuteRules.ParseList(extraPaths.Value)), actionKeywords, extraPaths);
         AddComponent<QuietTicker>();
     }
 
@@ -72,7 +75,7 @@ public sealed class Plugin : BasePlugin
     }
 
     /// <summary>Appended rather than reset, so paths the player listed in an older version stay.</summary>
-    private static void AddToiletUseSound(ConfigEntry<string> extraPaths, QuietLog log)
+    private static void AddToiletUseSound(ConfigEntry<string> extraPaths, ModLog log)
     {
         var upgraded = ConfigUpgrade.AppendPath(extraPaths.Value, ConfigUpgrade.ToiletUseSound);
 
