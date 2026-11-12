@@ -1,24 +1,24 @@
 Name: Quiet Toilet
-Summary: Mutes the toilet sound effects and the voice lines that come with them, so you stop hearing it every time someone goes. Every other sound plays as normal, even ones the game shares with the toilet. Nothing goes into your save, so remove it any time. If one still gets through, the mod can list what it hears so you can mute it too. Needs Exiled's Toolkit.
+Summary: Mutes the toilet sound effects and the voice lines that come with them, so you stop hearing it every time someone goes. Every other sound plays as normal, even ones the game shares with the toilet. Nothing goes into your save, so remove it any time. If a toilet sound still gets through, the mod can list what it hears so you can mute it too. Needs Exiled's Toolkit.
 
 Description (BBCode):
 [center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
 
-Tired of hearing it every time someone uses the toilet? Quiet Toilet mutes the toilet sounds and the voice lines that go with them. Nothing else gets quieter.
+Quiet Toilet mutes the toilet sounds and the voice lines that go with them, so you stop hearing them every time someone uses the toilet. Nothing else gets quieter.
 
 [size=5]Main features[/size]
 [list]
-[*][b]Toilet sounds muted[/b]: the sound effect of every toilet action is silenced.[/*]
-[*][b]Voice lines muted[/b]: character voices during a toilet action are silenced too.[/*]
-[*][b]Nothing else goes quiet[/b]: if the game reuses a toilet sound for something else, that sound is left alone.[/*]
-[*][b]Add your own[/b]: name any sound that still gets through in the config and it is muted.[/*]
+[*][b]Toilet sounds muted[/b]: every toilet action plays without its sound effect.[/*]
+[*][b]Voice lines muted[/b]: every character's voice lines during a toilet action are muted too.[/*]
+[*][b]Nothing else goes quiet[/b]: if the game also uses a toilet sound for another action, the mod leaves that sound alone.[/*]
+[*][b]Add your own[/b]: if you still hear a toilet sound, add it in the config and it's muted.[/*]
 [/list]
 Quiet Toilet only changes what you hear. It adds nothing to your save and does not edit game files. You can remove it at any time.
 
 Works in English and Chinese.
 
 [size=5]Known issues[/size]
-The main toilet sound is muted by default. Any other toilet sound that the game also uses for another action stays on by default. Turn on [font=Courier New]LogSoundsHeard[/font] in the config and the mod writes every sound it hears to [font=Courier New]BepInEx\quiet-toilet.log[/font], so you can find that sound and add it in the config.
+A toilet sound the game also uses for another action still plays, unless you add it in the config. The main toilet sound is already added by default. Turn on [font=Courier New]LogSoundsHeard[/font] in the config and the mod writes every sound it hears to [font=Courier New]BepInEx\quiet-toilet.log[/font], so you can find that sound and add it in the config.
 
 [center][img]https://sldb.core-directive.com/img/mods-banner.jpg[/img]
 [size=4][url=https://www.nexusmods.com/survivallog/mods/73]Get Mod Manager[/url] to set up all your mods in game  |  [url=https://sldb.core-directive.com/en/]Open the Survival Log wiki[/url] for items, recipes and maps[/size][/center]
@@ -48,7 +48,7 @@ To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.qu
 
 [size=5]Feedback[/size]
 Found a bug or have an idea? Come say hi on the [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url], or post in this page's Posts tab. For bugs, please include [font=Courier New]BepInEx\LogOutput.log[/font] and [font=Courier New]BepInEx\quiet-toilet.log[/font].
-To reach me directly, message [b]exiled.dev[/b] on Discord; you can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
+To reach me directly, message [b]exiled.dev[/b] on Discord. You can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
 
 [size=5]Source and license[/size]
 Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-QuietToilet]github.com/AnExiledDev/SurvivalLog-QuietToilet[/url]
@@ -56,21 +56,21 @@ Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-QuietToil
 [line]
 [size=5]简体中文[/size]
 
-每次有人上厕所都要听一遍？Quiet Toilet 会把上厕所的音效和随之而来的角色语音静音，其他声音不受任何影响。
+Quiet Toilet 会把上厕所的音效和随之而来的角色语音静音，不用每次有人上厕所都听一遍。其他声音不受影响。
 
 [size=5]主要功能[/size]
 [list]
 [*][b]厕所音效静音[/b]：所有上厕所动作的音效都会被静音。[/*]
-[*][b]角色语音静音[/b]：上厕所时角色的语音也会被静音。[/*]
-[*][b]其他声音照常[/b]：如果游戏把某个厕所音效也用在别的动作上，这个声音会保留。[/*]
-[*][b]可自行添加[/b]：仍能听到的声音，只要在配置文件里写上它的名称就会被静音。[/*]
+[*][b]角色语音静音[/b]：上厕所时所有角色的语音也会被静音。[/*]
+[*][b]其他声音照常[/b]：如果游戏把某个厕所音效也用在别的动作上，模组不会静音这个声音。[/*]
+[*][b]可自行添加[/b]：如果还能听到厕所的声音，把它加到配置里就会被静音。[/*]
 [/list]
 Quiet Toilet 只改变你听到的声音，不会往存档里添加任何内容，也不会修改游戏文件，随时可以移除。
 
 支持英文和中文。
 
 [size=5]已知问题[/size]
-上厕所的主要音效默认会被静音。游戏同时用于其他动作的其他厕所音效默认不会被静音。在配置中打开 [font=Courier New]LogSoundsHeard[/font] 后，模组会把听到的每个声音写入 [font=Courier New]BepInEx\quiet-toilet.log[/font]，你可以从中找到这个声音并把它加到配置里。
+游戏同时用于其他动作的厕所音效仍会播放，除非你把它加到配置里。上厕所的主要音效默认已经加进去了。在配置中打开 [font=Courier New]LogSoundsHeard[/font] 后，模组会把听到的每个声音写入 [font=Courier New]BepInEx\quiet-toilet.log[/font]，你可以从中找到这个声音并把它加到配置里。
 
 [url=https://www.nexusmods.com/survivallog/mods/73]获取 Mod Manager[/url]，在游戏里设置所有模组。[url=https://sldb.core-directive.com/zh/]打开 Survival Log 维基[/url]，物品、配方、地图一查就有。
 

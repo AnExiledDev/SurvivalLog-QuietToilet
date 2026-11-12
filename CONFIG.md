@@ -10,11 +10,11 @@ Settings live in `BepInEx\config\com.dev.survivallog.quiettoilet.cfg`, created t
 | `PathKeywords` | `toilet,poop,fart,matong,cesuo,lashi,dabian,xiaobian` | Any sound whose event path contains one of these is muted, wherever it plays. |
 | `ExtraEventPaths` | `event:/Model/Human/zuoxiajiukaishi` | Exact sound event paths to mute as well. The default is the sound of using the toilet, which the game also plays for two other toilet actions. |
 
-All three are comma-separated lists. Matching ignores upper and lower case. Spaces around commas are ignored.
+All three are lists separated by commas. Upper and lower case don't matter, and neither do spaces around the commas.
 
 `ActionKeywords` is matched against every name the game gives an action, in English and Chinese. Remove a word to stop treating those actions as toilet actions.
 
-`PathKeywords` is plain text matching, so a short keyword can catch more than you meant. If something other than the toilet goes quiet, remove the keyword that caught it (turn on `LogSoundsHeard` and the log shows the path).
+`PathKeywords` matches plain text, so a short keyword can catch more than you meant. If something other than the toilet goes quiet, remove the keyword that caught it (turn on `LogSoundsHeard` and the log shows the path).
 
 `ExtraEventPaths` takes full paths such as `event:/SFX/Something/Toilet_Flush`. To find one, set `LogSoundsHeard` to `true`, play the sound in game, then copy its path from `BepInEx\quiet-toilet.log`. A path listed here is muted even if other actions share it.
 
@@ -24,4 +24,4 @@ All three are comma-separated lists. Matching ignores upper and lower case. Spac
 | --- | --- | --- |
 | `LogSoundsHeard` | `false` | When `true`, writes each sound to `BepInEx\quiet-toilet.log` the first time it plays, marked as muted or heard. Use it to find a toilet sound that still plays. |
 
-Turn it off again once everything you want is muted. The log trims itself to its newest part once it passes 1 MB.
+Turn it off again once everything you want is muted. Once the log passes 1 MB, it's moved to `quiet-toilet.log.1` and a new one starts.
